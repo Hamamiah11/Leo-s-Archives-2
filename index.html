@@ -44,12 +44,15 @@
             if (filtered.length > 0) {
                 resultsDiv.style.display = 'block';
                 filtered.forEach(page => {
-                    const link = document.createElement('a');
-                    link.href = page.url;
-                    link.textContent = page.name;
-                    link.className = 'result-item';
-                    resultsDiv.appendChild(link);
-                });
+                const link = document.createElement('a');
+                
+                const cleanUrl = page.url.startsWith('files/') ? page.url.replace('files/', '') : page.url;
+                
+                link.href = cleanUrl;
+                link.textContent = page.name;
+                link.className = 'result-item';
+                resultsDiv.appendChild(link);
+            });
             } else if (query.length > 0) {
                 resultsDiv.style.display = 'block';
                 const noResults = document.createElement('div');
